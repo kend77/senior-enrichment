@@ -1,0 +1,22 @@
+body {
+  font-family: proxima-nova,sans-serif;
+}
+
+#main{
+  display: flex;
+}
+#campus-list {
+  justify-content: flex-start;
+}
+
+#welcome {
+  display: flex;
+  justify-content: center;
+}
+
+
+h1 {
+  display: flex;
+}
+
+

@@ -70,8 +70,8 @@ GET
 
 ```
 POST
-- new campus
-- new student
+<!-- - new campus -->
+<!-- - new student -->
 ```
 
 ```

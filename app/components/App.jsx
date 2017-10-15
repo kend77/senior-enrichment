@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Navbar from './Navbar'
+import CampusList from './CampusList';
+import Welcome from './Welcome';
 
 export default class App extends Component {
 
@@ -7,6 +9,7 @@ export default class App extends Component {
     return (
       <div className='container-fluid'>
       <Navbar />
+      <Welcome />
       </div>
     )
   }

@@ -24,8 +24,7 @@ campusRouter.get('/:campusId', (req, res, next) => {
 
 //create new campus
 campusRouter.post('/', (req, res, next) => {
-  const campusName = req.body.campusName;
-  Campus.findOrCreate({where: {name: campusName}})
+  Campus.findOrCreate({where: req.body})
     .then(campus => {
       res.json(campus)
     })
@@ -42,7 +41,7 @@ campusRouter.put('/:campusId', (req, res, next) => {
 //delete campus
 campusRouter.delete('/:campusId', (req, res, next) => {
   const id = req.params.id;
-  Campus.destroy({where: {id}})
+  Campus.destroy({where: {id: id}})
     .then(() => {res.status(204).end()})
     .catch(next);
 })
