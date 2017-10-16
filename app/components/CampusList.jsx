@@ -1,21 +1,42 @@
 import React, { Component } from 'react';
-import { Navlink } from 'react-router-dom';
+import { Navlink, withRouter} from 'react-router-dom';
+import { connect } from 'react-redux';
 
-export default class CampusList extends Component {
 
-  render() {
+function CampusList (props) {
+
     return (
       <div className="container-fluid">
-      <table id="campus-list" className="table" >
+      <table id="campus-list" className="table table-striped" >
       <thead>
         <tr>
           <th>Campus Name</th>
-          <th>Students</th>
+          <th>Number Of Students</th>
         </tr>
       </thead>
-      <tbody></tbody>
+      <tbody>
+        {props.campuses.map(campus => {
+          return (
+          <tr key={campus.id}>
+            <td scope="row">{campus.name}</td>
+            <td>{props.students.filter(student => student.campusId === campus.id).length}</td>
+          </tr>)
+        })}
+      </tbody>
     </table>
     </div>
     )
   }
+
+
+
+const mapStateToProps = (state, ownProps) => {
+  return {
+    students: state.students,
+    campuses: state.campuses
+  }
 }
+
+export default withRouter(connect(mapStateToProps)(CampusList))
+
+

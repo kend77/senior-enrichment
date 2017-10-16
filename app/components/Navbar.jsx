@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Navlink } from 'react-router-dom';
+import {NavLink, Link } from 'react-router-dom';
 import Search from './Search'
 
 
@@ -8,19 +8,17 @@ export default class Navbar extends Component {
 
   render()  {
     return (
-      <nav className="navbar">
+      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <Link to="/" className="navbar-brand">Home</Link>
         <ul className="nav nav-pills">
           <li className="nav-item">
-            <a className="nav-link" href="#">Home</a>
+            <NavLink to="/campuses" className="nav-link" >Campuses</NavLink>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#">Campuses</a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link" href="#">Students</a>
+            <NavLink to="/students" className="nav-link">Students</NavLink>
           </li>
         </ul>
-        <Search />
+      <Search />
       </nav>
     )
   }
