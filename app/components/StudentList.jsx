@@ -29,6 +29,9 @@ function StudentList (props) {
         })}
       </tbody>
     </table>
+    <Link to="/students/addstudent">
+      <button  type="button" className="btn btn-primary btn-lg btn-block">Add New Student</button>
+    </Link>
     </div>
     )
   }
