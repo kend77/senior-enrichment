@@ -5,6 +5,7 @@ const GET_STUDENTS = 'GET_STUDENTS';
 const GET_STUDENT = 'GET_STUDENT';
 const REMOVE_STUDENT = 'REMOVE_STUDENT';
 
+
 export function getStudents(students) {
   const action = {type: GET_STUDENTS, students}
   return action;
@@ -19,6 +20,7 @@ export function removeStudent(student) {
   const action = {type: REMOVE_STUDENT, student}
   return action;
 }
+
 
 
 
@@ -38,11 +40,11 @@ export function fetchStudents () {
 export function postStudent (student, history) {
 
   return function thunk(dispatch) {
-    return axios.post('/api/students', {params: student})
+    return axios.post('/api/students', student)
       .then(res => res.data)
       .then(student => {
-        const action = getStudent(student);
-        dispatch(action);
+        const action = getStudent(student)
+        dispatch(action)
         history.push('/students')
       })
   }
@@ -51,11 +53,11 @@ export function postStudent (student, history) {
 export function deleteStudent(student, history) {
 
   return function thunk(dispatch) {
+    const action = removeStudent(student);
+    dispatch(action)
     return axios.delete(`/api/students/${student.id}`)
       .then(res => res.data)
       .then(student => {
-        const action = removeStudent(student);
-        dispatch(action)
           history.push('/students')
       })
   }
@@ -64,13 +66,14 @@ export function deleteStudent(student, history) {
 
 
 export default function studentsReducer(state = [], action) {
+  console.log(action, state)
   switch(action.type) {
     case GET_STUDENTS:
       return action.students;
     case GET_STUDENT:
       return [...state, action.student];
     case REMOVE_STUDENT:
-      return state.filter(student => student !== action.student)
+      return state.filter(student => student.id !== Number(action.student.id))
     default:
       return state;
   }

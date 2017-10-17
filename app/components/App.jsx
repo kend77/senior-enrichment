@@ -20,7 +20,7 @@ export default class App extends Component {
 
   render() {
     return (
-      <div className='container-fluid'>
+      <div className='container-fluid bg-light'>
       <Navbar />
       <main>
         <Switch>
@@ -29,7 +29,7 @@ export default class App extends Component {
           <Route exact path="/students" component={StudentList} />
           <Route path="/students/addstudent" component={AddStudent} />
           <Route path="/students/:id" component={SingleStudent} />
-          <Redirect to="/" />
+          <Redirect to="#/" />
         </Switch>
       </main>
       </div>

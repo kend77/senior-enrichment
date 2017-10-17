@@ -9,8 +9,8 @@ export default class Navbar extends Component {
   render()  {
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <Link to="/" className="navbar-brand">Home</Link>
-        <ul className="nav nav-pills">
+      <Link to="/" className="navbar-brand font-italic">MH</Link>
+        <ul className="nav nav-pills mr-auto">
           <li className="nav-item">
             <NavLink to="/campuses" className="nav-link" >Campuses</NavLink>
           </li>

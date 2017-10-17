@@ -5,8 +5,9 @@ import { postStudent } from '../store'
 
 function AddStudent (props) {
   return (
-    <form onSubmit={props.onSubmit}>
-    <div className="form-group">
+    <div className ="d-flex justify-content-center">
+    <form onSubmit={props.onSubmit} className="col-md-6">
+    <div className="form-group" >
       <label>Name</label>
       <input type="name" className="form-control" placeholder="student name" name="name"/>
     </div>
@@ -24,8 +25,9 @@ function AddStudent (props) {
         })}
       </select>
     </div>
-    <button type="submit" className="btn btn-primary">Submit</button>
+    <button type="submit" className="btn btn-primary">Add</button>
   </form>
+  </div>
   )
 }
 
