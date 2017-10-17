@@ -14,7 +14,6 @@ studentRouter.get('/', (req, res, next) => {
 //get one student
 studentRouter.get('/:studentId', (req, res, next) =>{
   const studentId = req.params.studentId;
-  console.log(studentId)
   Student.findById(studentId)
     .then(student => {
       res.json(student);
@@ -24,10 +23,19 @@ studentRouter.get('/:studentId', (req, res, next) =>{
 
 //post new student
 studentRouter.post('/', (req, res, next) => {
-  const name = req.body.name;
-  Student.findOrCreate({where: req.body})
-    .then(student => {
-      res.json(student);
+  const student = {name: req.body.name, email: req.body.email, campusId: Number(req.body.campusId)}
+  Student.findOrCreate({where: student})
+  .spread((student, created) =>{
+    res.json(student)
+  })
+})
+
+studentRouter.delete('/:id', (req, res, next) => {
+
+  const studentId = Number(req.params.id)
+  Student.destroy({where: {id: studentId}})
+    .then(affectedRows => {
+      res.json(affectedRows)
     })
 })
 

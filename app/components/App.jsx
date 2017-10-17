@@ -13,8 +13,9 @@ export default class App extends Component {
   componentDidMount() {
     const campusesThunk = fetchCampuses();
     const studentsThunk = fetchStudents();
-    store.dispatch(campusesThunk);
     store.dispatch(studentsThunk);
+    store.dispatch(campusesThunk);
+
   }
 
   render() {
@@ -28,7 +29,7 @@ export default class App extends Component {
           <Route exact path="/students" component={StudentList} />
           <Route path="/students/addstudent" component={AddStudent} />
           <Route path="/students/:id" component={SingleStudent} />
-
+          <Redirect to="/" />
         </Switch>
       </main>
       </div>
