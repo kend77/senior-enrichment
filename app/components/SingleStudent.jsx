@@ -4,37 +4,33 @@ import { Link } from 'react-router-dom';
 import { deleteStudent, setStudent, setCampus } from '../store'
 
 
-class SingleStudent extends Component {
+function SingleStudent (props) {
 
-    constructor(props) {
-      super(props)
-    }
+      const studentId = Number(props.match.params.id);
 
-    render() {
-
-      const studentId = Number(this.props.match.params.id);
-
-      if(this.props.students.length && this.props.campuses.length) {
-        const student = this.props.students.find(student => student.id === studentId);
-        const campus = this.props.campuses.find(campus => campus.id ===student.campusId);
-        this.props.handleSetCampus(campus)
-        this.props.handleSetStudent(student)
+      if(props.students.length && props.campuses.length) {
+        const student = props.students.find(student => student.id === studentId);
+        const campus = props.campuses.find(campus => campus.id ===student.campusId);
+        props.handleSetCampus(campus)
+        props.handleSetStudent(student)
       }
+
       return (
         <div className="card" >
           <div className="card-body">
-              <h1 className="card-title" >{this.props.student.name}</h1>
-              <h4 className="card-subtitle mb-2 text-muted">{this.props.student.email}</h4>
-              <h4 className="card-subtitle mb-2 text-muted">{this.props.campus.name}</h4>
-            <Link to={`/students/${this.props.student.id}/edit`}>
+              <h1 className="card-title" >{props.student.name}</h1>
+              <h4 className="card-subtitle mb-2 text-muted">{props.student.email}</h4>
+              <h4 className="card-subtitle mb-2 text-muted">{props.campus.name}</h4>
+            <Link to={`/students/${props.student.id}/edit`}>
             <button type="button" className="btn btn-secondary col-sm-6">Edit</button>
             </Link>
-            <button onClick={this.props.handleRemove} type="button" className="btn btn-danger col-sm-6">Remove Student</button>
+            <button onClick={props.handleRemove} type="button" className="btn btn-danger col-sm-6">Remove Student</button>
           </div>
         </div>
       )
   }
-}
+
+
 
 
 

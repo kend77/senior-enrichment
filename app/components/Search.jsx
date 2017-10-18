@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
 
-export default class Search extends Component {
-  render() {
+export default function Search () {
+
     return (
       <form className="form-inline my-2 my-lg-0">
         <input className="form-control mr-sm-2" type="text" placeholder="search..." aria-label="Search"></input>
@@ -10,4 +10,4 @@ export default class Search extends Component {
       </form>
     )
   }
-}
+
