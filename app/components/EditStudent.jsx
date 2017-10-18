@@ -57,7 +57,6 @@ class EditStudent extends Component {
               <option key={campus.id} value={campus.id}>{campus.name}</option>
             )
           })}
-          <option value={null}>---</option>
           </select>
         </div>
         <button type="submit" className="btn btn-primary">Submit</button>

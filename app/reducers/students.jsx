@@ -86,6 +86,8 @@ export default function studentsReducer(state = [], action) {
       return [...state, action.student];
     case REMOVE_STUDENT:
       return state.filter(student => student.id !== Number(action.student.id))
+    // case REMOVE_STUDENTS:
+    //   return state.filter(student => )
     default:
       return state;
   }

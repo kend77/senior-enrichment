@@ -3,6 +3,7 @@ import axios from 'axios';
 
 const GET_CAMPUSES = 'GET_CAMPUSES';
 const GET_CAMPUS = 'GET_CAMPUS';
+const REMOVE_CAMPUS = 'REMOVE_CAMPUS'
 
 
 export function getCampuses(campuses) {
@@ -12,6 +13,11 @@ export function getCampuses(campuses) {
 
 export function getCampus(campus) {
   const action = {type: GET_CAMPUS, campus}
+  return action;
+}
+
+export function removeCampus(campus) {
+  const action = {type: REMOVE_CAMPUS, campus}
   return action;
 }
 
@@ -28,7 +34,7 @@ export function fetchCampuses () {
 }
 
 export function postCampus(campus, history) {
-  console.log('in thunk creator', campus)
+
   return function thunk (dispatch) {
     return axios.post('/api/campuses', campus)
       .then(res => res.data)
@@ -52,6 +58,19 @@ export function editCampus(campus, history) {
     }
   }
 
+export function deleteCampus(campus, history) {
+
+  return function thunk(dispatch) {
+    const action = removeCampus(campus)
+    dispatch(action)
+    return axios.delete(`/api/campuses/${campus.id}`)
+    .then(res => res.data)
+    .then(campus => {
+      history.push('/campuses')
+    })
+  }
+}
+
 
 
 export default function campusesReducer(state = [], action) {
@@ -60,6 +79,8 @@ export default function campusesReducer(state = [], action) {
       return action.campuses;
     case GET_CAMPUS:
       return [...state, action.campus]
+    case REMOVE_CAMPUS:
+     return state.filter(campus => campus.id !== Number(action.campus.id))
     default:
       return state;
   }

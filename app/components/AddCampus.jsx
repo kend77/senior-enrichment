@@ -31,7 +31,6 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     onSubmit: (e) => {
-      console.log(e.target.name.value)
       const campus = {
         name: e.target.name.value
       }
