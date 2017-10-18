@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Navlink, withRouter} from 'react-router-dom';
+import { withRouter} from 'react-router-dom';
 import { connect } from 'react-redux';
 
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link, Navlink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 
@@ -41,9 +41,11 @@ function StudentList (props) {
 const mapStateToProps = (state, ownProps) => {
   return {
     students: state.students,
-    campuses: state.campuses
+    campuses: state.campuses,
   }
 }
+
+
 
 export default connect(mapStateToProps)(StudentList);
 

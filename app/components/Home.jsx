@@ -5,24 +5,18 @@ export default class Welcome extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      display: true,
-      interval: ''
+      display: true
     }
   }
 
-  homeInterval () {
-    setInterval(() => {
+  componentDidMount() {
+    this.homeInterval = setInterval(() => {
       this.setState({display: !this.state.display})
     }, 3000)
   }
 
-
-  componentDidMount() {
-    this.homeInterval()
-  }
-
   componentWillUnmount() {
-    console.log(interval)
+    clearInterval(this.homeInterval)
   }
 
   render() {

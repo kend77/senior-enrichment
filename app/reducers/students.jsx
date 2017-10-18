@@ -66,7 +66,7 @@ export function deleteStudent(student, history) {
 
 
 export default function studentsReducer(state = [], action) {
-  console.log(action, state)
+
   switch(action.type) {
     case GET_STUDENTS:
       return action.students;
