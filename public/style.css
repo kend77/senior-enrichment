@@ -4,6 +4,7 @@ body {
 
 #main{
   display: flex;
+  height: 110vh;
 }
 
 #home {

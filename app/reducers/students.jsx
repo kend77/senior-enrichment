@@ -50,6 +50,18 @@ export function postStudent (student, history) {
   }
 }
 
+export function editStudent(student, history) {
+
+  return function thunk(dispatch) {
+    return axios.put(`api/students/${student.id}`, student)
+      .then(res => {
+        const studentsThunk = fetchStudents()
+        dispatch(studentsThunk)
+        history.push(`/students/${student.id}`)
+      })
+  }
+}
+
 export function deleteStudent(student, history) {
 
   return function thunk(dispatch) {
@@ -58,7 +70,7 @@ export function deleteStudent(student, history) {
     return axios.delete(`/api/students/${student.id}`)
       .then(res => res.data)
       .then(student => {
-          history.push('/students')
+        history.push('/students')
       })
   }
 }

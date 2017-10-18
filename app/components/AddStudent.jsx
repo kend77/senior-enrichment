@@ -4,16 +4,17 @@ import { connect } from 'react-redux';
 import { postStudent } from '../store'
 
 function AddStudent (props) {
+  document.title = "Add student"
   return (
     <div className ="d-flex justify-content-center">
     <form onSubmit={props.onSubmit} className="col-md-6">
     <div className="form-group" >
       <label>Name</label>
-      <input type="name" className="form-control" placeholder="student name" name="name"/>
+      <input type="name" className="form-control" placeholder="enter student name..." name="name"/>
     </div>
     <div className="form-group">
       <label>email</label>
-      <input type="email" className="form-control" placeholder="student email" name="email" />
+      <input type="email" className="form-control" placeholder="enter student email..." name="email" />
     </div>
     <div className="form-group">
       <label>Select Campus</label>
@@ -35,8 +36,7 @@ function AddStudent (props) {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    campuses: state.campuses,
-    history: ownProps.history
+    campuses: state.campuses
   }
 }
 
@@ -51,7 +51,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       e.preventDefault();
       return dispatch(postStudent(student, ownProps.history))
     }
-}
+  }
 }
 
 

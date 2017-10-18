@@ -35,6 +35,9 @@ campusRouter.put('/:campusId', (req, res, next) => {
   const campusId = req.params.campusId;
   Campus.findById(campusId)
     .then(campus => campus.update(req.body))
+    .then(() => {
+      res.sendStatus(res.statusCode)
+    })
     .catch(next);
 })
 
