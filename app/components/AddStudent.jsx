@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
-import { Link, Navlink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { postStudent } from '../store'
 
+
 function AddStudent (props) {
+
   document.title = "Add student"
+
   return (
     <div className ="d-flex justify-content-center">
     <form onSubmit={props.onSubmit} className="col-md-6">

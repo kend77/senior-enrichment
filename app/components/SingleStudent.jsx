@@ -17,6 +17,7 @@ function SingleStudent (props) {
     const campus = props.campuses.find(campus => campus.id === student.campusId);
     props.handleSetCampus(campus)
     props.handleSetStudent(student)
+
   }
 
   return (

@@ -38,7 +38,7 @@ function StudentList (props) {
   </Link>
   </div>
   )
-  }
+}
 
 
 
@@ -48,7 +48,6 @@ const mapStateToProps = (state, ownProps) => {
     campuses: state.campuses,
   }
 }
-
 
 
 export default connect(mapStateToProps)(StudentList);

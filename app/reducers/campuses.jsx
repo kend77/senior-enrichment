@@ -37,11 +37,10 @@ export function postCampus(campus, history) {
 
   return function thunk (dispatch) {
     return axios.post('/api/campuses', campus)
-      .then(res => res.data)
-      .then(campus => {
+      .then(() => {
         const campusesThunk = fetchCampuses()
         dispatch(campusesThunk)
-        history.push('/campuses')
+        history.push('/campuses/')
       })
   }
 }
@@ -50,7 +49,7 @@ export function editCampus(campus, history) {
 
     return function thunk(dispatch) {
       return axios.put(`api/campuses/${campus.id}`, campus)
-        .then(res => {
+        .then(() => {
           const campusesThunk = fetchCampuses()
           dispatch(campusesThunk)
           history.push(`/campuses/${campus.id}`)
@@ -64,8 +63,7 @@ export function deleteCampus(campus, history) {
     const action = removeCampus(campus)
     dispatch(action)
     return axios.delete(`/api/campuses/${campus.id}`)
-    .then(res => res.data)
-    .then(campus => {
+    .then(() => {
       history.push('/campuses')
     })
   }

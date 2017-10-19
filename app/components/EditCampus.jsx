@@ -46,7 +46,6 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     handleSubmit: (e, oldCampus) => {

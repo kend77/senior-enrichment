@@ -23,8 +23,8 @@ export default class Welcome extends Component {
     return (
       <div id="home">
       {this.state.display ?
-      <h1 id="welcome">Welcome to MH Interplanetary Academy of JS</h1>:
-      <h1 id="welcome">Welcome to Margaret Hamilton Interplanetary Academy of JavaScript</h1>
+      <h1 id="welcome">Welcome to Margaret Hamilton Interplanetary Academy of JavaScript</h1>:
+      <h1 id="welcome">Welcome to MH Interplanetary Academy of JS</h1>
       }
       </div>
     )

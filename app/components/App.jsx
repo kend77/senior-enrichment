@@ -33,11 +33,11 @@ export default class App extends Component {
           <Route exact path="/campuses" component={CampusList} />
           <Route exact path="/students" component={StudentList} />
           <Route path="/students/addstudent" component={AddStudent} />
-          <Route path="/students/:id/edit" component={EditStudent} />
-          <Route path="/students/:id" component={SingleStudent} />
-          <Route path="/campuses/addcampus" component={AddCampus} />
-          <Route path="/campuses/:id/edit" component={EditCampus} />
-          <Route path="/campuses/:id" component={SingleCampus} />
+          <Route exact path="/students/:id/edit" component={EditStudent} />
+          <Route exact path="/students/:id" component={SingleStudent} />
+          <Route exact path="/campuses/addcampus" component={AddCampus} />
+          <Route exact path="/campuses/:id/edit" component={EditCampus} />
+          <Route exact path="/campuses/:id" component={SingleCampus} />
           <Route to="/*"  component={NotFound} />
         </Switch>
       </main>

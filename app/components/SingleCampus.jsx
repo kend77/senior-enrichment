@@ -6,30 +6,24 @@ import { setCampus, deleteCampus, removeStudents } from '../store'
 
 
 
-class SingleCampus extends Component {
-  constructor(props) {
-    super(props)
-  }
+function SingleCampus (props) {
 
 
-
-  render() {
-
-    document.title = `${this.props.campus.name}-Campus`
+    document.title = `${props.campus.name}-Campus`
 
     return (
       <div className ="d-flex justify-content-center">
       <div className="card col-md-10">
         <div className="card-body">
-          <h1 className="card-title font-italic text-center">{this.props.campus.name}</h1>
-          {this.props.campus.image ?
-          <img src={this.props.campus.image} className="rounded mx-auto d-block" width="500" height="500"/> :
+          <h1 className="card-title font-italic text-center">{props.campus.name}</h1>
+          {props.campus.image ?
+          <img src={props.campus.image} className="rounded mx-auto d-block" width="500" height="500"/> :
           '' }
           <div>
-          <Link to={`/campuses/${this.props.campus.id}/edit`}>
-            <button type="button" className="btn btn-secondary col-sm-6">Edit Campus Name</button>
+          <Link to={`/campuses/${props.campus.id}/edit`}>
+            <button type="button" className="btn btn-secondary btn-lg col-sm-6">Edit Campus Name</button>
           </Link>
-          <button onClick={(e) => this.props.handleDeleteCampus(e, this.props.students)} type="button" className="btn btn-danger col-sm-6">Delete Campus</button>
+          <button onClick={(e) => props.handleDeleteCampus(e, props.students)} type="button" className="btn btn-danger btn-lg col-sm-6">Delete Campus</button>
           <Link to="/students/addstudent">
             <button type="button" className="btn btn-primary btn-md btn-block">Add New Student</button>
           </Link>
@@ -38,7 +32,7 @@ class SingleCampus extends Component {
           <br />
           <ul className="list-group list-group-flush">
           <h4>Students</h4>
-            {this.props.students.filter(student => student.campusId === this.props.campus.id).map(student => {
+            {props.students.filter(student => student.campusId === props.campus.id).map(student => {
               return (
                 <li key={student.id} className="list-group-item">
                 <Link to={`/students/${student.id}`}>{student.name}</Link>
@@ -50,8 +44,8 @@ class SingleCampus extends Component {
       </div>
       </div>
     )
-    }
 }
+
 
 const mapStateToProps = (state, ownProps) => {
   return {

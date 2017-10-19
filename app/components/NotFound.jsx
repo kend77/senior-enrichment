@@ -13,6 +13,7 @@ class NotFound extends Component {
       this.setState({redirect: true})
     }, 5000)
   }
+
   render() {
   return (
     <div className="font-weight-bold alert alert-warning">
