@@ -21,6 +21,11 @@ export function removeStudent(student) {
   return action;
 }
 
+export function removeStudents(students) {
+  const action = {type: REMOVE_STUDENTS, students}
+  return action;
+}
+
 
 
 
@@ -86,8 +91,9 @@ export default function studentsReducer(state = [], action) {
       return [...state, action.student];
     case REMOVE_STUDENT:
       return state.filter(student => student.id !== Number(action.student.id))
-    // case REMOVE_STUDENTS:
-    //   return state.filter(student => )
+    case REMOVE_STUDENTS:
+      const ids = action.students.map(student => student.id)
+      return state.filter(student => ids.indexOf(student.id) < -1)
     default:
       return state;
   }
