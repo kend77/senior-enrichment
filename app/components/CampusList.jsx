@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter, Link} from 'react-router-dom';
 import { connect } from 'react-redux';
+import { setCampus } from '../store'
 
 
 function CampusList (props) {
@@ -21,7 +22,7 @@ function CampusList (props) {
           return (
           <tr key={campus.id}>
             <td scope="row">
-            <Link to={`/campuses/${campus.id}`}>{campus.name}</Link>
+            <Link onClick={() => props.handleSetCampus(campus)}to={`/campuses/${campus.id}`}>{campus.name}</Link>
             </td>
             <td>{props.students.filter(student => student.campusId === campus.id).length || 0}</td>
           </tr>)
@@ -46,6 +47,14 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-export default withRouter(connect(mapStateToProps)(CampusList))
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    handleSetCampus: (campus) => {
+      dispatch(setCampus(campus));
+    }
+  }
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CampusList))
 
 

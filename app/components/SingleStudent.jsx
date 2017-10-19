@@ -14,7 +14,7 @@ function SingleStudent (props) {
   if(props.students.length && props.campuses.length) {
 
     const student = props.students.find(student => student.id === studentId);
-    const campus = props.campuses.find(campus => campus.id ===student.campusId);
+    const campus = props.campuses.find(campus => campus.id === student.campusId);
     props.handleSetCampus(campus)
     props.handleSetStudent(student)
   }

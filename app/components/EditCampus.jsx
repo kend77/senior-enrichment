@@ -26,7 +26,7 @@ class EditCampus extends Component {
       document.title = "Edit Campus"
       return (
         <div className ="d-flex justify-content-center">
-        <form onSubmit={this.props.handleSubmit} className="col-md-6">
+        <form onSubmit={(e) => this.props.handleSubmit(e, this.props.campus)} className="col-md-6">
         <div className="form-group" >
         <h2>Editing campus...</h2>
         <br />
@@ -49,14 +49,15 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    handleSubmit: (e) => {
+    handleSubmit: (e, oldCampus) => {
       e.preventDefault();
       const campus = {
         id: Number(ownProps.match.params.id),
-        name: e.target.name.value
+        name: e.target.name.value,
+        image: oldCampus.image
       }
-      // const action = setCampus(campus)
-      // dispatch(action)
+      const action = setCampus(campus)
+      dispatch(action)
       return dispatch(editCampus(campus, ownProps.history))
     }
   }

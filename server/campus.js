@@ -12,15 +12,24 @@ campusRouter.get('/', (req, res, next) => {
 			.catch(next)
 })
 
-//get one campus
-campusRouter.get('/:campusId', (req, res, next) => {
-	const campusId = req.params.campusId;
-	Campus.findById(campusId)
-		.then(campus => {
-			res.json(campus)
+campusRouter.param('id', function (req, res, next, id) {
+  Campus.findById(id)
+    .then(campus => {
+      if(!campus) {
+        console.log('Campus does not exist')
+        res.sendStatus(404)
+      }
+      req.campus = campus;
+      next();
     })
-    .catch(next);
 })
+
+
+//get one campus
+campusRouter.get('/:id', (req, res, next) => {
+  res.json(req.campus)
+})
+
 
 //create new campus
 campusRouter.post('/', (req, res, next) => {
@@ -31,10 +40,8 @@ campusRouter.post('/', (req, res, next) => {
 })
 
 //update campus
-campusRouter.put('/:campusId', (req, res, next) => {
-  const campusId = req.params.campusId;
-  Campus.findById(campusId)
-    .then(campus => campus.update(req.body))
+campusRouter.put('/:id', (req, res, next) => {
+    req.campus.update(req.body)
     .then(() => {
       res.sendStatus(res.statusCode)
     })
@@ -42,10 +49,9 @@ campusRouter.put('/:campusId', (req, res, next) => {
 })
 
 //delete campus
-campusRouter.delete('/:campusId', (req, res, next) => {
-  const id = req.params.campusId;
-  Campus.destroy({where: {id: id}})
-    .then((count) => {
+campusRouter.delete('/:id', (req, res, next) => {
+  req.campus.destroy()
+    .then(() => {
       res.sendStatus(res.statusCode)
     })
     .catch(next);

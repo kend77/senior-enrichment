@@ -10,16 +10,17 @@ class SingleCampus extends Component {
   constructor(props) {
     super(props)
   }
-  componentDidMount() {
 
-    if(this.props.campuses.length) {
-      const campus = this.props.campuses.find(campus => campus.id === Number(this.props.match.params.id));
-      this.props.handleSetCampus(campus)
-    }
-  }
+  // componentDidMount() {
+  //   const campus = this.props.campuses.find(campus => campus.id === Number(this.props.match.params.id));
+  //   this.props.handleSetCampus(campus)
+  // }
 
   render() {
-
+    // if(this.props.campuses.length) {
+      // const campus = this.props.campuses.find(campus => campus.id === Number(this.props.match.params.id));
+      // this.props.handleSetCampus(campus)
+    // }
     document.title = `${this.props.campus.name}-Campus`
 
     return (
