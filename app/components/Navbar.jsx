@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {NavLink, Link } from 'react-router-dom';
-import Search from './Search'
+
 
 
 
@@ -19,7 +19,6 @@ export default class Navbar extends Component {
             <NavLink to="/students" className="nav-link">Students</NavLink>
           </li>
         </ul>
-      <Search />
       </nav>
     )
   }

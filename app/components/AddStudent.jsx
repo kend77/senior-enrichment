@@ -20,8 +20,9 @@ function AddStudent (props) {
       <label>Select Campus</label>
       <select className="form-control" name="campus">
         {props.campuses.map(campus => {
+          let selected = props.campus.id === campus.id ? 'selected' : '';
           return (
-            <option key={campus.id} value={campus.id}>{campus.name}</option>
+            <option key={campus.id} value={campus.id} selected={selected}>{campus.name}</option>
           )
         })}
       </select>
@@ -36,7 +37,8 @@ function AddStudent (props) {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    campuses: state.campuses
+    campuses: state.campuses,
+    campus: state.campus
   }
 }
 

@@ -11,16 +11,10 @@ class SingleCampus extends Component {
     super(props)
   }
 
-  // componentDidMount() {
-  //   const campus = this.props.campuses.find(campus => campus.id === Number(this.props.match.params.id));
-  //   this.props.handleSetCampus(campus)
-  // }
+
 
   render() {
-    // if(this.props.campuses.length) {
-      // const campus = this.props.campuses.find(campus => campus.id === Number(this.props.match.params.id));
-      // this.props.handleSetCampus(campus)
-    // }
+
     document.title = `${this.props.campus.name}-Campus`
 
     return (
@@ -36,6 +30,9 @@ class SingleCampus extends Component {
             <button type="button" className="btn btn-secondary col-sm-6">Edit Campus Name</button>
           </Link>
           <button onClick={(e) => this.props.handleDeleteCampus(e, this.props.students)} type="button" className="btn btn-danger col-sm-6">Delete Campus</button>
+          <Link to="/students/addstudent">
+            <button type="button" className="btn btn-primary btn-md btn-block">Add New Student</button>
+          </Link>
           </div>
           <br />
           <br />
