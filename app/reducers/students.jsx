@@ -4,6 +4,7 @@ import axios from 'axios';
 const GET_STUDENTS = 'GET_STUDENTS';
 const GET_STUDENT = 'GET_STUDENT';
 const REMOVE_STUDENT = 'REMOVE_STUDENT';
+const REMOVE_STUDENTS = 'REMOVE_STUDENTS';
 
 
 export function getStudents(students) {
@@ -93,7 +94,7 @@ export default function studentsReducer(state = [], action) {
       return state.filter(student => student.id !== Number(action.student.id))
     case REMOVE_STUDENTS:
       const ids = action.students.map(student => student.id)
-      return state.filter(student => ids.indexOf(student.id) < -1)
+      return state.filter(student => ids.indexOf(student.id) === -1)
     default:
       return state;
   }

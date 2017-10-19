@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { editCampus } from '../store'
+import { setCampus, editCampus } from '../store'
 
 
 class EditCampus extends Component {
@@ -55,6 +55,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         id: Number(ownProps.match.params.id),
         name: e.target.name.value
       }
+      // const action = setCampus(campus)
+      // dispatch(action)
       return dispatch(editCampus(campus, ownProps.history))
     }
   }

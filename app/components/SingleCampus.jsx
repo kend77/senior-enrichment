@@ -21,6 +21,7 @@ class SingleCampus extends Component {
   render() {
 
     document.title = `${this.props.campus.name}-Campus`
+
     return (
       <div className ="d-flex justify-content-center">
       <div className="card col-md-10">
@@ -33,7 +34,7 @@ class SingleCampus extends Component {
           <Link to={`/campuses/${this.props.campus.id}/edit`}>
             <button type="button" className="btn btn-secondary col-sm-6">Edit Campus Name</button>
           </Link>
-          <button onClick={this.props.handleDeleteCampus} type="button" className="btn btn-danger col-sm-6">Delete Campus</button>
+          <button onClick={(e) => this.props.handleDeleteCampus(e, this.props.students)} type="button" className="btn btn-danger col-sm-6">Delete Campus</button>
           </div>
           <br />
           <br />
@@ -67,8 +68,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     handleSetCampus: (campus) => {
       dispatch(setCampus(campus));
     },
-    handleDeleteCampus : (e) => {
+    handleDeleteCampus : (e, students) => {
       const campus = ownProps.match.params
+      const deleteStudents = students.filter(student => student.campusId === Number(campus.id))
+      const action = removeStudents(deleteStudents)
+      dispatch(action);
       return dispatch(deleteCampus(campus, ownProps.history))
     }
   }
