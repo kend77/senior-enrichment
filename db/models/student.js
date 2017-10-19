@@ -12,6 +12,10 @@ const Student = db.define('student', {
     validate: {
       isEmail: true
     }
+  },
+  image: {
+    type: Sequelize.STRING,
+    defaultValue: 'http://jennstrends.com/wp-content/uploads/2013/10/bad-profile-pic-2.jpeg'
   }
 })
 

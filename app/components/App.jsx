@@ -9,12 +9,13 @@ import AddStudent from './AddStudent';
 import EditStudent from './EditStudent';
 import EditCampus from './EditCampus'
 import AddCampus from './AddCampus';
+import NotFound from './NotFound';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import store, { fetchStudents, fetchCampuses } from '../store'
 
 export default class App extends Component {
 
-  componentWillMount () {
+  componentDidMount () {
     const campusesThunk = fetchCampuses();
     const studentsThunk = fetchStudents();
     store.dispatch(studentsThunk);
@@ -37,7 +38,7 @@ export default class App extends Component {
           <Route path="/campuses/addcampus" component={AddCampus} />
           <Route path="/campuses/:id/edit" component={EditCampus} />
           <Route path="/campuses/:id" component={SingleCampus} />
-          <Redirect to="/" />
+          <Route to="/*"  component={NotFound} />
         </Switch>
       </main>
       </div>

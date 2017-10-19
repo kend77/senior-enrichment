@@ -28,7 +28,7 @@ function AddStudent (props) {
       </select>
     </div>
     <button type="submit" className="btn btn-primary">Add</button>
-  </form>
+    </form>
   </div>
   )
 }

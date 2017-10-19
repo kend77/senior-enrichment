@@ -25,7 +25,12 @@ function SingleStudent (props) {
         <div className="card-body">
             <h1 className="card-title" >{props.student.name}</h1>
             <h4 className="card-subtitle mb-2 text-muted">{props.student.email}</h4>
-            <h4 className="card-subtitle mb-2 text-muted">{props.campus.name}</h4>
+            <Link to={`/campuses/${props.campus.id}`}>
+            <h4 className="card-subtitle mb-2 card-link">{props.campus.name}</h4>
+            </Link>
+            {props.student.image ?
+              <img src={props.student.image} className="rounded mx-auto d-block" width="250" height="250"/> :
+              '' }
           <Link to={`/students/${props.student.id}/edit`}>
           <button type="button" className="btn btn-secondary col-sm-6">Edit</button>
           </Link>
