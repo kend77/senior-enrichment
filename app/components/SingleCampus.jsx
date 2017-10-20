@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { deleteCampus, removeStudents } from '../store'
+import { setCampus, deleteStudent, deleteCampus, removeStudents } from '../store'
 
 
 
 
 function SingleCampus (props) {
-
-
+    const campus = props.campuses.find(campus => campus.id === Number(props.match.params.id));
+    props.handleSetCampus(campus)
     document.title = `${props.campus.name}-Campus`
 
     return (
@@ -17,7 +17,7 @@ function SingleCampus (props) {
         <div className="card-body">
           <h1 className="card-title font-italic text-center">{props.campus.name}</h1>
           {props.campus.image ?
-          <img src={props.campus.image} className="rounded mx-auto d-block" width="500" height="500"/> :
+          <img src={props.campus.image} className="rounded mx-auto d-block" width="450" height="450"/> :
           '' }
           <div>
           <Link to={`/campuses/${props.campus.id}/edit`}>
@@ -34,8 +34,9 @@ function SingleCampus (props) {
           <h4>Students</h4>
             {props.students.filter(student => student.campusId === props.campus.id).map(student => {
               return (
-                <li key={student.id} className="list-group-item">
+                <li key={student.id} className="list-group-item justify-content-md-between">
                 <Link to={`/students/${student.id}`}>{student.name}</Link>
+                <button onClick={(e) => props.handleRemove(e, student)} type="button" className="btn btn-danger col-sm-3">Remove Student</button>
                 </li>
               )
             })}
@@ -63,6 +64,13 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       const action = removeStudents(deleteStudents)
       dispatch(action);
       return dispatch(deleteCampus(campus, ownProps.history))
+    },
+    handleRemove: (e, student) => {
+      const campus = ownProps.match.params;
+      return dispatch(deleteStudent(student, ownProps.history));
+    },
+    handleSetCampus: (campus) => {
+      dispatch(setCampus(campus));
     }
   }
 }
