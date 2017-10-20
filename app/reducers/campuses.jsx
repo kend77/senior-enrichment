@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+import { setCampus } from '../store'
 
 const GET_CAMPUSES = 'GET_CAMPUSES';
 const GET_CAMPUS = 'GET_CAMPUS';
@@ -22,7 +22,7 @@ export function removeCampus(campus) {
   return action;
 }
 
-export function udateCampus(campus) {
+export function updateCampus(campus) {
   const action = {type: UPDATE_CAMPUS, campus}
   return action;
 }
@@ -43,10 +43,13 @@ export function postCampus(campus, history) {
 
   return function thunk (dispatch) {
     return axios.post('/api/campuses', campus)
-      .then(() => {
-        const campusesThunk = fetchCampuses()
-        dispatch(campusesThunk)
-        history.push('/campuses/')
+      .then(res => res.data)
+      .then(campus => {
+        const getAction = getCampus(campus)
+        const setAction = setCampus(campus)
+        dispatch(setAction)
+        dispatch(getAction)
+        history.push(`/campuses/${campus.id}`)
       })
   }
 }
@@ -54,7 +57,7 @@ export function postCampus(campus, history) {
 export function editCampus(campus, history) {
 
     return function thunk(dispatch) {
-      const action = udateCampus(campus)
+      const action = updateCampus(campus)
       dispatch(action);
       return axios.put(`api/campuses/${campus.id}`, campus)
         .then(() => {

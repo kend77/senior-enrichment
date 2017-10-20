@@ -34,7 +34,7 @@ campusRouter.get('/:id', (req, res, next) => {
 //create new campus
 campusRouter.post('/', (req, res, next) => {
   Campus.findOrCreate({where: req.body})
-    .then(campus => {
+    .spread((campus, created) => {
       res.json(campus)
     })
 })

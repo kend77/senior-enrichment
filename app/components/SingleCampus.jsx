@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { setCampus, deleteCampus, removeStudents } from '../store'
+import { deleteCampus, removeStudents } from '../store'
 
 
 
@@ -57,9 +57,6 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    handleSetCampus: (campus) => {
-      dispatch(setCampus(campus));
-    },
     handleDeleteCampus : (e, students) => {
       const campus = ownProps.match.params
       const deleteStudents = students.filter(student => student.campusId === Number(campus.id))
